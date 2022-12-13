@@ -10,7 +10,6 @@ _So I opened a PR and saw that one of the tests were failing.
 When I check the logs, I saw that **isort is complaining** about a file that I haven't touched.
 As we all do, I rebased my branch to master, and checked again.
 I was still failing. I went and check the others' PR's and all was fine, except mine..._
-
 ```
 ERROR: /home/jenkins/pipeline/../something_script.py Imports are incorrectly sorted.
 --- /home/jenkins/pipeline/../something_script.py:before	2022-12-13 02:08:53
@@ -26,7 +25,10 @@ ERROR: /home/jenkins/pipeline/../something_script.py Imports are incorrectly sor
  from avro.io import BinaryEncoder
 +from kafka import KafkaProducer
 ```
+I didn't want to just go and correct the import without knowing what was the reason.
+
 ---
+
 I was adding a new dependency,`acryl-datahub==0.9.3.2`, to the project and that was the main suspect.
 I removed the dependency from the requirements.txt(not pyproject.toml 😔), and isort was happy again.
 
@@ -39,13 +41,13 @@ When I check the error again with this in mind, I realized that the line `from k
 and with the addition of the `avro==1.10.2`, it is grouped together with the `avro` imports.
 
 I first thought that as a bug of isort, considering that we are using a very very old version of isort, 4.2.8, but nothing appeared online
-when I search like: "Adding a dependency causes isort to behave differently", nothing related appeared.
+when I search like: "Adding a dependency causes isort to behave differently."
 
-Then I decide to go and read some documentation of isort and learn how it decides to group the imports and saw the following on its main page:
+Then I decide to go and read some documentation of isort and learn how it decides to group the imports and saw the following on its main page at the top:
 
 ...
 
-_(Code snipped with ugly looking mixed imports, and followed by:)_
+_(A code snipped with ugly looking mixed imports, and followed by:)_
 
 After isort:
 ```python
@@ -68,7 +70,7 @@ And I got the reason 😀🎉
 ---
 
 isort groups third_party modules and my_lib kind of local modules separately.
-When I go and add the dependency `avro==1.10.2` to the pyenv, now it can resolve
+When I go and add the dependency `avro==1.10.2` to the pyenv, now isort can resolve
 imports from `avro` and group these together with other third_party module, `kafka`.
 
 I still wonder how we ended up with a code in our repository that does not have all its dependencies added to the requirements.txt but I guess why not.
