@@ -74,7 +74,7 @@ When I go and add the dependency `avro==1.10.2` to the pyenv, now isort can reso
 imports from `avro` and group these together with other third_party module, `kafka`.
 
 I still wonder how we ended up with a code in our repository that does not have all its dependencies added to the requirements.txt but I guess why not.
-I don't know how and where they use this file importing the non-existing module works.
+I don't know how and where they use this file importing the non-existing module.
 It is named as `something_script.py`, maybe somebody just wanted to commit their ad-hoc script to the repository.
 
 ---
