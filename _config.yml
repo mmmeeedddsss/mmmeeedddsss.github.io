@@ -56,7 +56,8 @@ google_site_verification: 'XZ9AFN-YwDf9yMCBK2pZtU8HmpOeTz9ngAfxXJk_Fx4'
 # The end of `jekyll-seo-tag` settings
 
 google_analytics:
-  id: 'G-VFWDZVWN5E'                 # fill in your Google Analytics ID
+  # fill in your Google Analytics ID
+  id: 'G-VFWDZVWN5E'
   # Google Analytics pageviews report settings
   pv:
     proxy_endpoint:   # fill in the Google Analytics superProxy endpoint of Google App Engine
@@ -83,7 +84,7 @@ theme_mode:   # [light|dark]
 img_cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar:
+avatar: 'https://miro.medium.com/max/1242/1*ARM-8hUJjFoVYly3iVei1A.webp'
 
 # boolean type, the global switch for ToC in posts.
 toc: true
@@ -120,6 +121,9 @@ pwa:
   enabled: true   # the option for PWA feature
 
 paginate: 10
+
+plugins:
+  - jemoji
 
 # ------------ The following options are not recommended to be modified ------------------
 
