@@ -19,12 +19,12 @@ timezone: UTC+3
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: mmmeeedddsss blog                          # the main title
+title: A data engineer's blog                       # the main title
 
-tagline: A text-focused Jekyll theme   # it will display as the sub-title
+tagline: My personal blog on stuff that I struggle with and eventually solve and share
 
 description: >-                        # used by seo meta and the atom feed
-  A minimal, responsive, and powerful Jekyll theme for presenting professional writing.
+  My personal blog on stuff that I struggle with and eventually solve and share, second line
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
 url: 'https://mmmeeedddsss.github.io'
@@ -32,23 +32,25 @@ url: 'https://mmmeeedddsss.github.io'
 github:
   username: mmmeeedddsss             # change to your github username
 
-twitter:
-  username: twitter_username            # change to your twitter username
+# twitter:
+#   username: twitter_username            # change to your twitter username
 
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
   name: Mert Tunç
-  email: example@domain.com             # change to your email address
+  #email: example@domain.com             # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://twitter.com/username      # change to your twitter homepage
-    - https://github.com/username       # change to your github homepage
+    #- https://twitter.com/username      # change to your twitter homepage
+    - https://github.com/mmmeeedddsss       # change to your github homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
     # - https://www.linkedin.com/in/username
 
-google_site_verification:               # fill in to your verification string
+
+# fill in to your verification string
+google_site_verification: 'XZ9AFN-YwDf9yMCBK2pZtU8HmpOeTz9ngAfxXJk_Fx4'
 
 # ↑ --------------------------
 # The end of `jekyll-seo-tag` settings
