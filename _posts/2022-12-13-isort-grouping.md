@@ -1,6 +1,6 @@
 ---
-title: TIL: Isort groups imports based on their sources
-description:
+title: TIL - Isort groups imports based on their sources
+description: Adding a dependency to python was causing isort to behave differently.
 date: 2022-12-13
 categories: [CS, Python]
 tags: [python, isort]     # TAG names should always be lowercase
@@ -14,7 +14,7 @@ I was still failing. I went and check the others' PR's and all was fine, except 
 ```
 ERROR: /home/jenkins/pipeline/../something_script.py Imports are incorrectly sorted.
 --- /home/jenkins/pipeline/../something_script.py:before	2022-12-13 02:08:53
-+++ /home/jenkins/pipeline/../something_script.py:after	2022-12-13 02:14:32.008739
++++ /home/jenkins/pipeline/../something_script.py:after         2022-12-13 02:14:32
 @@ -20,11 +20,10 @@
  import io
  import os
@@ -30,9 +30,9 @@ ERROR: /home/jenkins/pipeline/../something_script.py Imports are incorrectly sor
 I was adding a new dependency,`acryl-datahub==0.9.3.2`, to the project and that was the main suspect.
 I removed the dependency from the requirements.txt(not pyproject.toml 😔), and isort was happy again.
 
-Then I tried to remove the dependencies installed by `pip acryl-datahub==0.9.3.2`. pip uninstall does not uninstall
-the transitive dependencies installed with a dependency addition so manually found the list and tried to search in an efficient manner,
-manually deleted them in bulks and see if isort keeps complaining.
+Then I tried to remove the dependencies installed by `pip acryl-datahub==0.9.3.2` since this one by itself seems so unrelated. pip uninstall does not uninstall
+the transitive dependencies installed with a dependency addition so manually found the list and tried to search for the one(s) that results in this complaining in an efficient manner,
+by manually deleting them in bulks and see if isort keeps complaining xd.
 
 At some point, I saw removing `avro==1.10.2` from the python environment was solving the issue.
 When I check the error again with this in mind, I realized that the line `from kafka import KafkaProducer` was standing by itself initially,
@@ -45,7 +45,7 @@ Then I decide to go and read some documentation of isort and learn how it decide
 
 ...
 
-_(Code snipped with mixed imports, and followed by:)_
+_(Code snipped with ugly looking mixed imports, and followed by:)_
 
 After isort:
 ```python
@@ -71,7 +71,8 @@ isort groups third_party modules and my_lib kind of local modules separately.
 When I go and add the dependency `avro==1.10.2` to the pyenv, now it can resolve
 imports from `avro` and group these together with other third_party module, `kafka`.
 
-I still wonder how we ended up with a code in our repository that does not have all its dependencies added to the requirements.txt but I guess why not. I don't know how this file importing the non-existing module works.
+I still wonder how we ended up with a code in our repository that does not have all its dependencies added to the requirements.txt but I guess why not.
+I don't know how and where they use this file importing the non-existing module works.
 It is named as `something_script.py`, maybe somebody just wanted to commit their ad-hoc script to the repository.
 
 ---
