@@ -128,6 +128,6 @@ So, we can conclude that Python is better :upside_down_face:.
 
 **tldr**: Apache's HttpClient returns a HttpResponse object for responses, and
 you need to close either the InoutStream or the response directly to allow freeing the resources.
-Need for closing HttpResonses returned by HttpConnections on Java was very unexpected xd
+Need for closing HttpResponses returned by HttpConnections on Java was very unexpected xd
 
 *Most of the information I collected in this investigation roots from the following stack overflow link: [https://stackoverflow.com/questions/11875015/httpclient-exception-org-apache-http-conn-connectionpooltimeoutexception-timeo](https://stackoverflow.com/questions/11875015/httpclient-exception-org-apache-http-conn-connectionpooltimeoutexception-timeo)*
