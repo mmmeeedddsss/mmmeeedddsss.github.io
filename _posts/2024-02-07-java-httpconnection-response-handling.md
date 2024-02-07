@@ -94,14 +94,14 @@ has an `InputStream` attached and needs to get closed when you are done with it.
 Even if you don't care about the returned body, as in our example, not caring about it causes a resource leak.
 
 So to handle the HttpResponses well, you need to do one of the following in Java:
-- Closing the response if you have to have a ClosableHttpResponse instance. In that case, you can just call `resp.close()`
-- Close the Input stream on the response. A convenient way of doing that seems like `EntityUtils.consumeQuietly(resp.getEntity)`.
+- Closing the response if you have to have a `ClosableHttpResponse` instance. In that case, you can just call `resp.close()`
+- Close the `InputStream` on the response. A convenient way of doing that seems like `EntityUtils.consumeQuietly(resp.getEntity)`.
 The implementation of `consumeQuietly` is very safe, being in try-catch and checking for nulls before anything.
 - Java has a syntax named try-with-resources, which I understand, is similar to Python's `with` statement.
 Using this syntax, you can auto close such closable resources when you are done with them. In our case, the following
 syntax should also be fine:
   ```java
-  try(final CloseableHttpResponse mHttpResponse = client.execute(mPost);) {
+  try(final HttpResponse resp = httpClient.execute(post);) {
       System.out.println("Sent " + i + "th chunk with status code " + resp.getStatusLine().getStatusCode());
   }
   ```
@@ -114,8 +114,9 @@ IO stuff from the developer and return a complete and finalized `HttpResponse` i
 Not knowing Java that well, I think the selected implementation style here is unexpected.
 For example, in the Python implementation, which I love more, the response object is final and does not
 require/expect you to call on anything on it. The operation we do feels higher level than
-sockets or kernel level stuff. I would expect to get a *connection* or a *socket*, or maybe a *file handler*
-returned if the implementation wants me to handle the deallocation/freeing of resources.
+sockets or kernel level stuff. I would expect to get a *connection*, or a *socket*,
+or maybe a *file handler* returned if the implementation wants me to handle the
+deallocation/freeing of resources.
 
 
 I also fail to see any disadvantages of how Python handles the same task: Would it be
@@ -126,8 +127,8 @@ So, we can conclude that Python is better :upside_down_face:.
 
 ---
 
-**tldr**: Apache's HttpClient returns a HttpResponse object for responses, and
-you need to close either the InoutStream or the response directly to allow freeing the resources.
-Need for closing HttpResponses returned by HttpConnections on Java was very unexpected xd
+**tldr**: Apache's HttpClient returns a `HttpResponse` object for responses, and
+you need to close either the `InputStream` or the `HttpResponse` to allow freeing the resources.
+Need for closing `HttpResponses` returned by `HttpConnections` on Java was very unintuitive for me xd
 
 *Most of the information I collected in this investigation roots from the following stack overflow link: [https://stackoverflow.com/questions/11875015/httpclient-exception-org-apache-http-conn-connectionpooltimeoutexception-timeo](https://stackoverflow.com/questions/11875015/httpclient-exception-org-apache-http-conn-connectionpooltimeoutexception-timeo)*
