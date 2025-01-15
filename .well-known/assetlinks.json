@@ -3,7 +3,7 @@
     "relation": ["delegate_permission/common.handle_all_urls"],
     "target": {
       "namespace": "android_app",
-      "package_name": "com.kul.contact_tracking_poc",
+      "package_name": "be.kuleuven.virio",
       "sha256_cert_fingerprints": [
         "92:9E:A7:9F:49:FD:4E:63:2A:4C:9E:52:3C:D1:38:DC:C6:83:2E:EA:8F:70:2A:54:EC:DA:11:70:98:72:19:34"
       ]
