@@ -13,7 +13,7 @@ seems very impressive due to its wide range of support and extensive documentati
 
 One use-case I need to provide is to allow the users of my app to be able to do some quick actions with the notifications actions.
 
-![img_3.png](img_3.png) |  ![img_2.png](img_2.png)
+![IOS Notification Action Example](/assets/img/ios_notif_ex.png) |  ![Android Notification Action Example](/assets/img/android_notif_ex.png)
 :-------------------------:|:-------------------------:
 Notification Actions on IOS  |  Notification Actions on Android
 
