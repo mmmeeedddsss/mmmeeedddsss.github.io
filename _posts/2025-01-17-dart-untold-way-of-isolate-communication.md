@@ -1,5 +1,5 @@
 ---
-title: TIL - You can communicate between dart isolates using IsolateNameServer
+title: Not mentioned well but - You can communicate between dart isolates using IsolateNameServer
 description: Somehow the official dart documentation overlooks the IsolateNameServer for communication between isolates even though it can be necessary to use in some cases.
 date: 2025-01-17
 categories: [CS, Dart]
@@ -31,11 +31,12 @@ Since the action does some state changes, I would like these changes to be refle
 
 So naturally, I went for a google search on how to communicate between isolates in dart. I found the official dart documentation on [isolates](https://dart.dev/language/isolates).
 I would like to share an excerpt from the documentation:
-1. > A newly spawned isolate only has the information it receives through the Isolate.spawn call. If you need the main isolate to continue to communicate with a spawned isolate past its initial creation, you must set up a communication channel where the spawned isolate can send messages to the main isolate. Isolates can only communicate via message passing. They can’t “see” inside each others’ memory, which is where the name “isolate” comes from.
+1.  > A newly spawned isolate only has the information it receives through the Isolate.spawn call. If you need the main isolate to continue to communicate with a spawned isolate past its initial creation, you must set up a communication channel where the spawned isolate can send messages to the main isolate. Isolates can only communicate via message passing. They can’t “see” inside each others’ memory, which is where the name “isolate” comes from.
 
 So my understanding is that I have to set up a communication channel between isolates during the creation of them.
 
 Let's turn and look for an excerpt from [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications) now,
+{:start="2"}
 2. > This plugin contains handlers for iOS & Android to handle these background isolate cases and will allow you to specify a Dart entry point (a function). When the user selects a action, the plugin will start a separate Flutter Engine which will then invoke the onDidReceiveBackgroundNotificationResponse callback.
 
 Important part here is the part
@@ -61,17 +62,19 @@ possible utilization of isolates for long running db tasks, and setting up your 
 multi isolate access turned out to be pretty trivial, but it is of course not the case for the bug or not the topic of this blogpost.
 
 Then an incredible thing happened. I saw the following, a bit longer excerpt on the documentation of drift:
->All setups mentioned here assume that there will be one main isolate responsible for spawning a DriftIsolate that it (and other isolates) can then connect to.
-> </br> </br> In Flutter apps, this model may not always fit your use case. For instance, your app may use background tasks or receive FCM notifications while closed. These tasks will run in a background FlutterEngine managed by native platform code, so there's no clear communication scheme between isolates. Still, you may want to share a live drift database between your UI engine and potential background engines, even without them directly knowing about each other.
-> </br> </br> An IsolateNameServer from dart:ui can be used to transparently share a drift isolate between such workers. You can store the connectPort of a DriftIsolate under a specific name to look it up later. Other clients can use DriftIsolate.fromConnectPort to obtain a DriftIsolate from the name server, if one has been registered.
+>All setups mentioned here assume that there will be one main isolate responsible for spawning a DriftIsolate that it (and other isolates) can then connect to.\
+>In Flutter apps, this model may not always fit your use case. For instance, your app may use background tasks or receive FCM notifications while closed. These tasks will run in a background FlutterEngine managed by native platform code, so there's no clear communication scheme between isolates. Still, you may want to share a live drift database between your UI engine and potential background engines, even without them directly knowing about each other.\
+>An IsolateNameServer from dart:ui can be used to transparently share a drift isolate between such workers. You can store the connectPort of a DriftIsolate under a specific name to look it up later. Other clients can use DriftIsolate.fromConnectPort to obtain a DriftIsolate from the name server, if one has been registered.
 
 ### That is how I met with [IsolateNameServer](https://api.flutter.dev/flutter/dart-ui/IsolateNameServer-class.html)
 
-So was it the end, No. `IsolateNameServer` allows you to dynamically register your isolates to a global map/dictionary of isolates by their identifiers.
+So was it the end, No.
+
+`IsolateNameServer` allows you to dynamically register your isolates to a global map/dictionary of isolates by their identifiers.
 
 Then, the other isolates can get the communication channel of the registered isolate by its identifier and use it to send the information of
 
-"I changed some stuff, please adjust yourself, or you can be outdated".
+_"I changed some stuff, please adjust yourself, or you can be outdated"._
 
 That is exactly what my background isolate tells to my main isolate for it to know that it should adapt to the changes and refresh the UI.
 If the main isolate is not running, fine, background isolate cannot send this message and nothing happens.
@@ -84,6 +87,9 @@ In addition to not even referring that ugly kind of global dictionary solution, 
 And in addition to not even mentioning `IsolateNameServer`, it says "A newly spawned isolate only has the information it receives through the Isolate.spawn call."(and the continuation on above).
 
 I found it both important to mention the existence of `IsolateNameServer` and also to mention that the communication channel can be passed after the initialization of the isolates.
+
+The good thing is, I could write a new blogpost over this thing, and planning to open an issue to dart and see if I will become a contributor of it.
+
 
 ---
 \* Your app is actually opened in any scenario, what I mean is opening the app to the front, not just running in the background.
