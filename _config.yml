@@ -13,7 +13,7 @@ lang: en
 
 
 # Change to your timezone › http://www.timezoneconverter.com/cgi-bin/findzone/findzone
-timezone: UTC+3
+timezone: Europe/Brussels
 
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
@@ -23,7 +23,7 @@ title: A data engineer's blog                       # the main title
 tagline: My personal notes on stuff that I struggle with and eventually solve and share
 
 description: >-                        # used by seo meta and the atom feed
-  My personal notes on stuff related to software engineering, specifically kubernetes, kafka, java, python and stuff that I struggle with and eventually solve and share
+  My personal notes on software engineering, specifically kubernetes, kafka, java, python and stuff that I struggle with and eventually solve and share
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
 url: 'https://mmmeeedddsss.github.io'
@@ -38,7 +38,7 @@ social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
   name: Mert Tunç
-  email: mert.tunc@udemy.com        # change to your email address
+  email: mert.tunc@kuleuven.be        # change to your email address
   links:
     # The first element serves as the copyright owner's link
     #- https://twitter.com/username      # change to your twitter homepage
@@ -130,6 +130,7 @@ baseurl: ""
 
 plugins:
   - jemoji
+  - jekyll-seo-tag
 
 # ------------ The following options are not recommended to be modified ------------------
 
@@ -212,3 +213,16 @@ jekyll-archives:
   permalinks:
     tag: /tags/:name/
     category: /categories/:name/
+
+
+jekyll_compose:
+  post_default_front_matter:
+    last_modified_at:
+    permalink:
+    description:
+    image:
+    published: true
+    sitemap: true
+    excerpt_separator: <!--more-->
+    categories:
+    tags:

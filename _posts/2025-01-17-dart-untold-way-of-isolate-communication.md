@@ -1,7 +1,7 @@
 ---
 title: Not mentioned well but - You can communicate between dart isolates using IsolateNameServer
 description: Somehow the official dart documentation overlooks the IsolateNameServer for communication between isolates even though it can be necessary to use in some cases.
-date: 2025-01-17
+date: 2025-01-17 17:10 +0100
 categories: [CS, Dart]
 tags: [dart, flutter, isolates, flutter_local_notifications, background_isolate, isolate_communication]     # TAG names should always be lowercase
 ---

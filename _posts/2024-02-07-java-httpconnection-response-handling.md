@@ -1,7 +1,7 @@
 ---
 title: TIL - You need to close responses returned from Apache's HttpConnection
 description: ClosableHttpResponse objects need to be closed, which seems very counterintuitive
-date: 2024-02-07
+date: 2024-02-07 15:35 +0300
 categories: [CS, Java]
 tags: [java, httpconnection, resource-leak]     # TAG names should always be lowercase
 ---
