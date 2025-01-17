@@ -1,6 +1,6 @@
 ---
 title: TIL - Isort groups imports based on their sources
-description: Adding a dependency to python was causing isort to behave differently.
+description: Isort groups imports based on their sources, and adding a new dependency can change the grouping of the imports.
 date: 2022-12-13 23:42 +0300
 categories: [CS, Python]
 tags: [python, isort]     # TAG names should always be lowercase

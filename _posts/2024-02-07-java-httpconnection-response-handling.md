@@ -1,6 +1,6 @@
 ---
 title: TIL - You need to close responses returned from Apache's HttpConnection
-description: ClosableHttpResponse objects need to be closed, which seems very counterintuitive
+description: Java's ClosableHttpResponse objects need to be closed to prevent resource leaks, which is very counter-intuitive.
 date: 2024-02-07 15:35 +0300
 categories: [CS, Java]
 tags: [java, httpconnection, resource-leak]     # TAG names should always be lowercase
