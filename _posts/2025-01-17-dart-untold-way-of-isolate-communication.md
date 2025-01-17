@@ -36,6 +36,7 @@ I would like to share an excerpt from the documentation:
 So my understanding is that I have to set up a communication channel between isolates during the creation of them.
 
 Let's turn and look for an excerpt from [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications) now,
+
 {:start="2"}
 2. > This plugin contains handlers for iOS & Android to handle these background isolate cases and will allow you to specify a Dart entry point (a function). When the user selects a action, the plugin will start a separate Flutter Engine which will then invoke the onDidReceiveBackgroundNotificationResponse callback.
 
