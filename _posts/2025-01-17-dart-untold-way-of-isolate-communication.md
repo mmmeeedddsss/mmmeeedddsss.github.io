@@ -37,13 +37,6 @@ So my understanding is that I have to set up a communication channel between iso
 
 Let's turn and look for an excerpt from [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications) now,
 
-:::note
-In some cases when you don't have easy access to the point the isolates are created
-and cannot pass the communication channel during `Isolate.spawn` call,
-you can instead use the [IsolateNameServer](https://api.flutter.dev/flutter/dart-ui/IsolateNameServer-class.html).
-It is a global mapping of names to ports where isolates can dynamically register themselves.
-:::
-
 {:start="2"}
 2. > This plugin contains handlers for iOS & Android to handle these background isolate cases and will allow you to specify a Dart entry point (a function). When the user selects a action, the plugin will start a separate Flutter Engine which will then invoke the onDidReceiveBackgroundNotificationResponse callback.
 

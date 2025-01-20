@@ -3,6 +3,8 @@
 - Run `bundle exec jekyll s` to host the site locally
 - Alter _posts to add post :D
 - Have google search console and analytics
+  - (On my main mail account) https://search.google.com/u/1/search-console?resource_id=https%3A%2F%2Fmmmeeedddsss.github.io%2F
+  -
 
 # Chirpy Starter [![Gem Version](https://img.shields.io/gem/v/jekyll-theme-chirpy)](https://rubygems.org/gems/jekyll-theme-chirpy) [![GitHub license](https://img.shields.io/github/license/cotes2020/chirpy-starter.svg?color=blue)][mit]
 
