@@ -1,0 +1,18 @@
+---
+layout: none
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {% for post in site.posts %}
+  <url>
+    <loc>{{ site.url }}{{ post.url | escape }}</loc>
+    <lastmod>{{ post.last_modified_at | date: '%Y-%m-%dT%H:%M:%S%:z' }}</lastmod>
+  </url>
+  {% endfor %}
+  <url>
+    <loc>{{ site.url }}/</loc>
+  </url>
+  <url>
+    <loc>{{ site.url }}/about</loc>
+  </url>
+</urlset>
