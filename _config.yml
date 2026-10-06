@@ -18,7 +18,7 @@ timezone: Europe/Brussels
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Mert Tunç's blog                       # the main title
+title: Mert Tunç · A data engineer's blog                       # the main title
 
 # Used by jekyll-seo-tag for the author in each post's structured data
 author:
