@@ -1,5 +1,5 @@
 ---
-title: TIL - Isort groups imports based on their sources
+title: Why isort fails on untouched files after adding a dependency
 description: Isort groups imports based on their sources, and adding a new dependency can change the grouping of the imports.
 date: 2022-12-13 23:42 +0300
 categories: [CS, Python]

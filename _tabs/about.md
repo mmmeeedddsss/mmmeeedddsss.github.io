@@ -1,5 +1,6 @@
 ---
 # the default layout is 'page'
+description: Mert Tunç is a computer engineer (METU BS and MS) who writes short notes on software problems that were hard to find answers to online.
 icon: fas fa-info-circle
 order: 4
 ---

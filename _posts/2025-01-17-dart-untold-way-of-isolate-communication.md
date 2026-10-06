@@ -1,5 +1,5 @@
 ---
-title: Not mentioned well but - You can communicate between dart isolates using IsolateNameServer
+title: Communicating between Flutter isolates with IsolateNameServer
 description: The dart documentation misses the existence of IsolateNameServer, which allows you to communicate between isolates after their initialization.
 date: 2025-01-17 17:10 +0100
 categories: [CS, Dart]

@@ -1,5 +1,5 @@
 ---
-title: TIL - You need to close responses returned from Apache's HttpConnection
+title: "Apache HttpClient ConnectionPoolTimeoutException: close your responses"
 description: Java's ClosableHttpResponse objects need to be closed to prevent resource leaks, which is very counter-intuitive.
 date: 2024-02-07 15:35 +0300
 categories: [CS, Java]
